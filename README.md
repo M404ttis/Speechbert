@@ -1,6 +1,7 @@
 # Speechbert
-Audio Player for a newspaper customer
+## Audio Player for a newspaper customer
 
+A fictitious customer in the field of Newspaper called "TEIZ" 
 
 
 Aufgabe 1:

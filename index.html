@@ -4,30 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.google.com/icons?selected=Material+Icons">
+    <!-- <link rel="stylesheet" href="https://fonts.google.com/icons?selected=Material+Icons"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Speechbert</title>
 </head>
 <body>
     <h1>Speechbert</h1>
     <!-- Contains the whole PLayer -->
-    <div class="music-container">
+    <div class="audio-container">
         <div class="music-info">
             <h4 id="title">'Soon to be dynamically populated with JS'</h4> 
             <!-- <div class="progress-container">
-                <div class="prgress"></div>
+                <div class="progress"></div>
             </div> -->
         </div>
-        <audio src=""></audio>
+        <audio src="https://zon-speechbert-production.s3.eu-central-1.amazonaws.…b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3" id="speechbertAudio"></audio>
+        <div class="navigation">
+            <div class="prev" id="action-btn">
+                <span class="material-icons">skip_previous</span>
+            </div>
+            <div class="play" id="action-btn">
+                <span class="material-icons">play_arrow</span>
+            </div>
+            <div class="next" id="action-btn">
+                <span class="material-icons">skip_next</span>
+            </div>
+        </div>
     </div>
-
+        
     <script>
         const api_url = 'https://speech.zeit.de/api/feeds/playlist/neue-nachrichten-test'
         async function getAudio(){
         const response = await fetch(api_url);  
         const data = await response.json();
+        let audioFirstCategoryTitle = data.blocks[0].title;
+        let firstAudiotrackUrl = data.blocks[0].items[0].url;
         console.log(data);
-        }
+        console.log('erster Titel erste Überkathegorie ist: ' + audioFirstCategoryTitle);
+        console.log('erste Track Url: ' + firstAudiotrackUrl);
+        // console.log(data.blocks[0].items.url);
+        let speechBert = document.getElementById('speechbertAudio').scr += `${firstAudiotrackUrl}`
+    }
         getAudio();
+
+        const audioContainer = document.querySelector('.audio-container');
+        const prevBtn = document.querySelector('.prev');
+        const playBtn = document.querySelector('.play');
+        const nextBtn = document.querySelector('.next');
+        const audio = document.querySelector('#speechbertAudio');
+        const progress = document.querySelector('.progress');
+        const progressContainer = document.querySelector('.progress-container');
+        const title = document.querySelector('#title');
+
+        // AudioFeed titles
+        const audioFeedTitles = ["Die CDU ringt um eine Haltung zur Russlandpolitik der Ex-Kanzlerin", "Premierminister Imran Khan durch Misstrauensvotum abgesetzt"];
+        // to-to: loop over api and push into array, hard coded for now
+
+         // AudioFeed URLs
+        const audioFeedUrls = ["https://zon-speechbert-production.s3.eu-central-1.amazonaws.com/articles/52e25337-fae3-4cfd-a08d-1c88668a6fce/full_114f0447229f28cf1e40bf7cab8a5e5222565234b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3", "https://zon-speechbert-production.s3.eu-central-1.amazonaws.com/articles/b91f44c1-90bb-4e71-9b80-4967404a5394/full_ffb3bcfe0a5c6e5dc06b93fd28159986a0e0d542936d3292ecba78ab1fa82646a08b71fe9b2e0c313291a76b34f639f0.mp3"];
+        // to-to: loop over api and push into array, hard coded for now
+
+        // don't loose at which audioFeed I'm at
+        let audioFeedIndex = 0
+    
+
+        // load the audioFeed into DOM
+        loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
+
+        // update audio Player Details
+        function loadAudioFeed(currentTitle, currentUrl){
+            title.innerText = currentTitle;
+            audio.src = currentUrl;
+        }
+
+        function playFeed(){
+            audioContainer.classList.add('play')
+            // span = playBtn.firstChild;
+            // txt = document.createTextNode('play_arrow');
+            // span.appendChild(txt)
+
+            // playBtn.firstChild.classList.add('material-icons');
+            // playBtn.firstChild.classList.remove('material-icons-outlined')
+
+            // playBtn.firstChild.textContent = 'pause';
+            audio.play();
+        }
+
+        function pauseFeed(){
+            audioContainer.classList.remove('play');
+            // playBtn.firstChild.classList.remove('material-icons');
+            // playBtn.firstChild.classList.add('material-icons-outlined')
+
+            // playBtn.firstChild.textContent = 'pause';
+            // playBtn.firstChild.createTextNode('pause');
+            // span = playBtn.firstChild;
+            // txt = document.createTextNode('pause');
+            // span.appendChild(txt)
+            audio.pause();
+        }
+        
+
+
+
+
+        // event Listeners
+        playBtn.addEventListener('click', () => {
+            const isPLaying = audioContainer.classList.contains('play')
+
+            if(isPLaying){
+                pauseFeed();
+            } else {
+                playFeed();
+            }
+        })
+
+        
+
     </script>
 </body>
 </html>

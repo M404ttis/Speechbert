@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.google.com/icons?selected=Material+Icons">
+    <title>Speechbert</title>
+</head>
+<body>
+    <h1>Speechbert</h1>
+    <!-- Contains the whole PLayer -->
+    <div class="music-container">
+        <div class="music-info">
+            <h4 id="title">'Soon to be dynamically populated with JS'</h4> 
+            <!-- <div class="progress-container">
+                <div class="prgress"></div>
+            </div> -->
+        </div>
+        <audio src=""></audio>
+    </div>
+
+    <script>
+        const api_url = 'https://speech.zeit.de/api/feeds/playlist/neue-nachrichten-test'
+        async function getAudio(){
+        const response = await fetch(api_url);  
+        const data = await response.json();
+        console.log(data);
+        }
+        getAudio();
+    </script>
+</body>
+</html>

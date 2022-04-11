@@ -10,7 +10,7 @@ Für die Entwicklung leitet sich daraus ab, dass
 2. bestehende classes für den bestehenden DOM geprüft, vermieden und globale tags nicht gestyled werden dürfen.
 3. der Stil des Widgets sich mit Schriftarten, Größen und CSS Styles in den Online-Auftritt der Zeitung einfügen muss.
 4. die gleichen Icons des Kunden benutzt werden Material Design Icons Library https://fonts.google.com/icons?selected=Material+Icons
-5. die Größe des Widgets dass Hauptprodukt - den Text, nicht übertrupmft.
+5. die Größe des Widgets dass Hauptprodukt - den Text, nicht übertrumpft.
 6. diejenigen Informationen aus der API isoliert implementiert werden müssen, die der Zeitung ein relevantes Mapping zwischen
     Artikel-Inhalt und Feed erlauben (Thema, Ressort, Verschlagwortung)
 
@@ -19,7 +19,7 @@ coming soon
 
 ## Userstory
 + Als User:in finde ich den Player zwischen zwei Paragraphen beim Lesen eines Artikels. (p-tags)
-+ Als User:in wird mir der PLayer unabhängig von meinem Endgerät funktional dargestellt. (Responsiv)
++ Als User:in wird mir der Player unabhängig von meinem Endgerät funktional dargestellt. (Responsiv)
 + Als User:in bringt mich der Player designtechnisch nicht von meinem Lesefluss weg.
 + Als User:in sehe ich das zugeordnete Ressort, die headline und das Thema.
 + Als User:in sehe ich eine Auswahl der möglichen Beiträge als Liste auf einen Blick. (Liste)

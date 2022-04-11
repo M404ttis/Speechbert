@@ -33,8 +33,13 @@ coming soon
 ## Userstory - weiterführender Kontext
 Der Journalismus ist in Zeiten der Digitalisierung im Wandel und die Lerser:innen werden zunehmends User:innen interaktiver 
 Medieninhalte. An Platformökonomie gewöhnte User:innen haben einen "click-on-demand" Serviceanspruch. Dementsprechend muss 
-sich das Produkt nativ in das browse-Verhalten einfügen. Die Zeitung befindet sich mit ihrem Geschäftsmodell darüberhinaus im Feld der "Aufmerksamkeits-Ökonomie". Hier übersetzt sich Verweildauer auf der Seite in Revenues durch ausgespielte Werbung. Diese Werbeeinnahmen werden umso größer sein, je eher eine Übereinstimmung des User:innen-Profils mit dem angestrebten Käufer:innenprofil der Werbetreibenden besteht. Die für dieses matching relevanten Metadaten müssen der jeweiligen User:in als Service angeboten und technisch in weiterführender Userstories implementiert werden. Relevant werden hier jegliche Datenvorhaltungen, die thematische Vorlieben, Ressort-Präferenzen, oder Listening-histories persistieren. Für die Zeitung wäre es ein strategischer Vorteil selbst zu einer Platform zu werden, die Daten vorhält. Dafür muss der Tausch Daten-Service implementiert werden. Hier sollte es einen Opt-out geben durch ein Premium Modell. Strategisch wird so eine entkräftung der kapitalistischen man-in-the-middle-attack durch google angestrebt. Werbetreibende sollten direkt anhand der Userprofile TEIZ-Online Werbekosten zahlen. Perspektivisch dürfte dies die Einnahmen übersteigen, die daruas generiert werden, dass externe Adds eingespielt werden.
-Daraus ergeben sich meiner Meinung nach die folgenden, über die Basis-Userstories hinausgehenden Userstories:
+sich das Produkt nativ in das browse-Verhalten einfügen. Die Zeitung befindet sich mit ihrem Geschäftsmodell darüberhinaus im Feld der "Aufmerksamkeits-Ökonomie". Hier übersetzt sich Verweildauer auf der Seite in Revenues durch ausgespielte Werbung. Diese Werbeeinnahmen werden umso größer sein, je eher eine Übereinstimmung des User:innen-Profils mit dem angestrebten Käufer:innenprofil der Werbetreibenden besteht. Die für dieses matching relevanten Metadaten müssen der jeweiligen User:in als Service angeboten und technisch in weiterführender Userstories implementiert werden. Relevant werden hier jegliche Datenvorhaltungen, die thematische Vorlieben, Ressort-Präferenzen, oder Listening-histories persistieren. Für die Zeitung wäre es ein strategischer Vorteil selbst zu einer Platform zu werden, die Daten vorhält. Dafür muss der Tausch Daten-Service implementiert werden. Dafür bietet sich ein BASIS-LOGIN an. Dieser sollte einen Opt-out anbieten durch ein Premium Modell.
+
+Das BASIS-LOGIN hat verschiedene Vorteile.
+Zum einen wird strategisch so eine Entkräftung der kapitalistischen man-in-the-middle-attack durch google angestrebt. Werbetreibende sollten direkt anhand der Userprofile TEIZ-Online Werbekosten zahlen. Perspektivisch dürfte dies die Einnahmen ergänzen, die daraus generiert werden, dass externe Adds eingespielt werden.
+Zum anderen könnte die gesamtgesellschaftliche Verantwortung als Nachrichten-Medium ernst genommen werden, indem gegen Echokammern und Radikalisierung ein Feature implementiert wird, namens "Mal was anderes", das Gegenteil von "Andere Leser/Hörer mochten auch:" auf Grundlage der eigenen Reading- Listening history. 
+
+Es ergeben sich meiner Meinung nach die folgenden, über die Basis-Userstories hinausgehenden Userstories:
 
 ## Userstories 2.0 - Empfehlungen und Ausblick an Kunden
 + Als User:in kann ich mich ohne Abbonnement in ein Basis-Konto einloggen.
@@ -46,3 +51,4 @@ Daraus ergeben sich meiner Meinung nach die folgenden, über die Basis-Userstori
 + Als User:in wird mir ein Ranking meiner "liebsten Ressorts" gezeigt, anhand eines internen Rankings.
 + Als User:in wird mir ein Ranking meiner "liebsten Themen" gezeigt, anhand der Feed-Verschlagwortung.
 + Als User:in wird mir ein Feed-Karussel mit "andere Leser mochten: " anhand ähnlicher Nutzer:innen-Profile angezeigt.
++ Als User:in wird mir ein Feed-Karussel mit "Mal was anderes: " anhand absolut gegensätzlicher Nutzer:innen-Profile angezeigt.

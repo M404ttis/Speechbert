@@ -37,12 +37,40 @@
         async function getAudio(){
         const response = await fetch(api_url);  
         const data = await response.json();
-        let audioFirstCategoryTitle = data.blocks[0].title;
+
+        // let audioFirstCategoryTitle = data.blocks[0].title;
         let firstAudiotrackUrl = data.blocks[0].items[0].url;
-        console.log(data);
-        console.log('erster Titel erste Überkathegorie ist: ' + audioFirstCategoryTitle);
-        console.log('erste Track Url: ' + firstAudiotrackUrl);
+        // console.log(data);
+        // console.log('erster Titel erste Überkathegorie ist: ' + audioFirstCategoryTitle);
+        // console.log('erste Track Url: ' + firstAudiotrackUrl);
         // console.log(data.blocks[0].items.url);
+        // AudioFeed titles
+        const audioFeedTitles = ["Die CDU ringt um eine Haltung zur Russlandpolitik der Ex-Kanzlerin", "Premierminister Imran Khan durch Misstrauensvotum abgesetzt"];
+        // to-to: loop over api and push into array, hard coded for now
+
+         // AudioFeed URLs
+        const audioFeedUrls = ["https://zon-speechbert-production.s3.eu-central-1.amazonaws.com/articles/52e25337-fae3-4cfd-a08d-1c88668a6fce/full_114f0447229f28cf1e40bf7cab8a5e5222565234b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3", "https://zon-speechbert-production.s3.eu-central-1.amazonaws.com/articles/b91f44c1-90bb-4e71-9b80-4967404a5394/full_ffb3bcfe0a5c6e5dc06b93fd28159986a0e0d542936d3292ecba78ab1fa82646a08b71fe9b2e0c313291a76b34f639f0.mp3"];
+        
+
+        Object.entries(data.blocks).forEach((entry) => {
+           let [key, value ] = entry
+        // console.log(Object.keys(entry));
+            console.log(`${key}: ${value}`)
+            // console.log(`${value.items}`)
+
+            // for (const blockKey in entry){
+            //     if (Obj.hasOwnProperty(blockKey)){
+            //         console.log(`${blockKey}: ${entry[blockKey]}`)
+            //     }
+            // }
+
+            // let {title} = entry.title // Ressort Title
+            // let {uuid, title, description, supertitle, webUrl, image, url, type} = entry.items;
+            // audioFeedTitles.push(title);
+            // audioFeedUrls.push(url);
+        })
+
+
         let speechBert = document.getElementById('speechbertAudio').scr += `${firstAudiotrackUrl}`
     }
         getAudio();
@@ -56,13 +84,7 @@
         const progressContainer = document.querySelector('.progress-container');
         const title = document.querySelector('#title');
 
-        // AudioFeed titles
-        const audioFeedTitles = ["Die CDU ringt um eine Haltung zur Russlandpolitik der Ex-Kanzlerin", "Premierminister Imran Khan durch Misstrauensvotum abgesetzt"];
-        // to-to: loop over api and push into array, hard coded for now
-
-         // AudioFeed URLs
-        const audioFeedUrls = ["https://zon-speechbert-production.s3.eu-central-1.amazonaws.com/articles/52e25337-fae3-4cfd-a08d-1c88668a6fce/full_114f0447229f28cf1e40bf7cab8a5e5222565234b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3", "https://zon-speechbert-production.s3.eu-central-1.amazonaws.com/articles/b91f44c1-90bb-4e71-9b80-4967404a5394/full_ffb3bcfe0a5c6e5dc06b93fd28159986a0e0d542936d3292ecba78ab1fa82646a08b71fe9b2e0c313291a76b34f639f0.mp3"];
-        // to-to: loop over api and push into array, hard coded for now
+// to-to: loop over api and push into array, hard coded for now
 
         // don't loose at which audioFeed I'm at
         let audioFeedIndex = 0

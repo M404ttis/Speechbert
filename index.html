@@ -103,6 +103,27 @@
             audio.pause();
         }
         
+        function prevAudioFeed(){
+            audioFeedIndex--
+
+            if(audioFeedIndex < 0){
+                audioFeedIndex = audioFeedUrls.length -1;
+            }
+            
+            loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
+            playFeed();
+        }
+
+        function nextAudioFeed(){
+            audioFeedIndex++
+
+            if(audioFeedIndex > audioFeedUrls.length -1 ){
+                audioFeedIndex = 0;
+            }
+            
+            loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
+            playFeed();
+        }
 
 
 
@@ -117,6 +138,11 @@
                 playFeed();
             }
         })
+
+        // change audioFeed events
+        prevBtn.addEventListener('click', prevAudioFeed);
+        nextBtn.addEventListener('click', nextAudioFeed);
+
 
         
 

@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="https://fonts.google.com/icons?selected=Material+Icons"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+
+    </style>
     <title>Speechbert</title>
 </head>
 <body>
@@ -14,9 +17,9 @@
     <div class="audio-container">
         <div class="music-info">
             <h4 id="title">'Bitte wählen Sie einen Feed'</h4> 
-            <!-- <div class="progress-container">
-                <div class="progress"></div>
-            </div> -->
+            <div class="feed-list-container">
+                <ul class="feed-list"></ul>
+            </div>
         </div>
         <audio src="https://zon-speechbert-production.s3.eu-central-1.amazonaws.…b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3" id="speechbertAudio"></audio>
         <div class="navigation">
@@ -54,6 +57,16 @@
             // console.log(url)
             audioFeedTitles.push(title);
             audioFeedUrls.push(url);
+
+            // inititate feedList
+            function createListItemForFeed(feedTitle){
+                let li = document.createElement('li');
+                li.innerText = feedTitle
+                return li
+                }
+            feedList.appendChild(createListItemForFeed(title))
+            
+
             });
 
         // let speechBert = document.getElementById('speechbertAudio').scr += `bitte wählen Sie einen Feed`
@@ -66,8 +79,8 @@
         const playBtn = document.querySelector('.play');
         const nextBtn = document.querySelector('.next');
         const audio = document.querySelector('#speechbertAudio');
-        const progress = document.querySelector('.progress');
-        const progressContainer = document.querySelector('.progress-container');
+        const feedList = document.querySelector('.feed-list');
+        const feedListContainer = document.querySelector('.feed-list-container');
         const title = document.querySelector('#title');
 
         // don't loose at which audioFeed I'm at

@@ -7,29 +7,109 @@
     <!-- <link rel="stylesheet" href="https://fonts.google.com/icons?selected=Material+Icons"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
+        /* @import url('') font goes here  */
+        *{ 
+            box-sizing: border-box;
+        }
+
+        .Speechbert-body {
+            height: 100vh; 
+            width: max-content;
+            margin:0;
+            font-family: "TabletGothic","Helvetica Neue",Helvetica,Arial,FreeSans,sans-serif;
+            color: white;
+            /* background-image: linear-gradient(0deg, black 23.8%, rgb(60, 178, 98) 92%); */
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Speechbert-h1 {
+           color: rgb(235, 54, 46);
+        }
+
+        .Speechbert-ul{
+            list-style-type: none;
+        }
+
+        .audio-container{
+            justify-content: center;
+            width: 40em;
+            background-color: #2c2b2e;
+            border-radius: 5px;
+            /* box-shadow: 0 20px 20px 0 rgba(255, 255, 255, 1); */
+            display: flex;
+            padding: 20px 30px;
+            position: relative;
+            margin: 100px;
+            z-index: 10;
+        }
+
+        .navigation{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .action-btn{
+            background-color: rgba(0, 0, 0, .6);
+            border: 2px solid #99999c;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+            margin: 0 20px;
+        }
+
+        .action-btn:hover{
+            background-color: rgba(0, 0, 0, .9);
+            border-color: #dfdfe1 ;
+            color: #dfdbdf;
+        }
+
+        .action-btn-big{
+            font-size: 30px;
+        }
+
+        .audio-info{
+            background-color: #202022;
+            border-radius: 5px 5px 0 0 ;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: calc(100% - 40px);
+            opacity: .9;
+            transform: translateY(48%);
+            justify-items: center;
+            display: grid;
+        }
+
 
     </style>
     <title>Speechbert</title>
 </head>
-<body>
-    <h1>Speechbert</h1>
+<body class="Speechbert-body">
+    <h1 class="Speechbert-h1">Speechbert</h1>
     <!-- Contains the whole PLayer -->
     <div class="audio-container">
-        <div class="music-info">
+        <div class="audio-info">
             <h4 id="title">'Bitte wählen Sie einen Feed'</h4> 
             <div class="feed-list-container">
-                <ul class="feed-list"></ul>
+                <ul class="feed-list Speechbert-ul"></ul>
             </div>
         </div>
         <audio src="https://zon-speechbert-production.s3.eu-central-1.amazonaws.…b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3" id="speechbertAudio"></audio>
         <div class="navigation">
-            <div class="prev" id="action-btn">
+            <div id="prev" class="action-btn">
                 <span class="material-icons">skip_previous</span>
             </div>
-            <div class="play" id="action-btn">
+            <div id="play" class="action-btn action-btn-big">
                 <span class="material-icons">play_arrow</span>
             </div>
-            <div class="next" id="action-btn">
+            <div id="next" class="action-btn">
                 <span class="material-icons">skip_next</span>
             </div>
         </div>
@@ -75,9 +155,9 @@
         getAudio();
 
         const audioContainer = document.querySelector('.audio-container');
-        const prevBtn = document.querySelector('.prev');
-        const playBtn = document.querySelector('.play');
-        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('#prev');
+        const playBtn = document.querySelector('#play');
+        const nextBtn = document.querySelector('#next');
         const audio = document.querySelector('#speechbertAudio');
         const feedList = document.querySelector('.feed-list');
         const feedListContainer = document.querySelector('.feed-list-container');
@@ -105,20 +185,21 @@
             // playBtn.firstChild.classList.add('material-icons');
             // playBtn.firstChild.classList.remove('material-icons-outlined')
 
-            // playBtn.firstChild.textContent = 'pause';
+            // playBtn.firstChild.innerHTML = 'pause';
             audio.play();
         }
-
+        
         function pauseFeed(){
             audioContainer.classList.remove('play');
             // playBtn.firstChild.classList.remove('material-icons');
             // playBtn.firstChild.classList.add('material-icons-outlined')
-
+            
             // playBtn.firstChild.textContent = 'pause';
             // playBtn.firstChild.createTextNode('pause');
             // span = playBtn.firstChild;
             // txt = document.createTextNode('pause');
             // span.appendChild(txt)
+            // playBtn.firstChild.innerHTML = 'play-arrow';
             audio.pause();
         }
         
@@ -144,6 +225,11 @@
             playFeed();
         }
 
+        // callback for event listener on li-item click
+        function getFeedListIndex(){
+            // on click 
+
+        }
 
 
 
@@ -162,6 +248,7 @@
         prevBtn.addEventListener('click', prevAudioFeed);
         nextBtn.addEventListener('click', nextAudioFeed);
 
+        
 
         
 

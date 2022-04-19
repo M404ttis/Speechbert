@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="https://fonts.google.com/icons?selected=Material+Icons"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
         /* @import url('') font goes here  */
@@ -22,6 +20,7 @@
             background-color: black;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
             align-items: center;
             justify-content: center;
         }
@@ -87,6 +86,14 @@
             display: grid;
         }
 
+        .speechebert-list-item{
+            cursor: pointer;
+        }
+
+        .speechebert-list-item:hover{
+            background-color: #99999c;
+        }
+
 
     </style>
     <title>Speechbert</title>
@@ -138,18 +145,18 @@
             audioFeedTitles.push(title);
             audioFeedUrls.push(url);
 
-            // inititate feedList
+            // populate feedList
             function createListItemForFeed(feedTitle){
                 let li = document.createElement('li');
                 li.innerText = feedTitle
+                li.classList.add("speechebert-list-item");
+
                 return li
                 }
             feedList.appendChild(createListItemForFeed(title))
             
-
             });
 
-        // let speechBert = document.getElementById('speechbertAudio').scr += `bitte wählen Sie einen Feed`
         }
 
         getAudio();
@@ -162,6 +169,8 @@
         const feedList = document.querySelector('.feed-list');
         const feedListContainer = document.querySelector('.feed-list-container');
         const title = document.querySelector('#title');
+        // const feedListItems = document.querySelector('.speechebert-list-item');
+        const feedListItems = document.getElementsByClassName('speechebert-list-item');
 
         // don't loose at which audioFeed I'm at
         let audioFeedIndex = 0
@@ -178,28 +187,11 @@
 
         function playFeed(){
             audioContainer.classList.add('play')
-            // span = playBtn.firstChild;
-            // txt = document.createTextNode('play_arrow');
-            // span.appendChild(txt)
-
-            // playBtn.firstChild.classList.add('material-icons');
-            // playBtn.firstChild.classList.remove('material-icons-outlined')
-
-            // playBtn.firstChild.innerHTML = 'pause';
             audio.play();
         }
         
         function pauseFeed(){
             audioContainer.classList.remove('play');
-            // playBtn.firstChild.classList.remove('material-icons');
-            // playBtn.firstChild.classList.add('material-icons-outlined')
-            
-            // playBtn.firstChild.textContent = 'pause';
-            // playBtn.firstChild.createTextNode('pause');
-            // span = playBtn.firstChild;
-            // txt = document.createTextNode('pause');
-            // span.appendChild(txt)
-            // playBtn.firstChild.innerHTML = 'play-arrow';
             audio.pause();
         }
         
@@ -225,13 +217,6 @@
             playFeed();
         }
 
-        // callback for event listener on li-item click
-        function getFeedListIndex(){
-            // on click 
-
-        }
-
-
 
         // event Listeners
         playBtn.addEventListener('click', () => {
@@ -248,9 +233,25 @@
         prevBtn.addEventListener('click', prevAudioFeed);
         nextBtn.addEventListener('click', nextAudioFeed);
 
-        
 
-        
+        function listClick(listItem){
+            let clickedListItemTitle = listItem.target.innnerText;
+            let newIndex = audioFeedTitles.indexOf(clickedListItemTitle);
+            audioFeedIndex = newIndex;
+            loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
+            playFeed();
+        }
+
+        // use event bubbling to append eventListeners to dynamically created li-items
+        // thus the list-click is independent from API-fetch time
+        // to-do: named function as callback in addEventListener
+        feedList.addEventListener('click', function (item) {
+            let clickedListItemTitle = item.target.innerText
+            let newIndex = audioFeedTitles.indexOf(clickedListItemTitle);
+            audioFeedIndex = newIndex;
+            loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
+            playFeed();
+        });
 
     </script>
 </body>

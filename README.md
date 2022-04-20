@@ -15,7 +15,9 @@ Für die Entwicklung leitet sich daraus ab, dass
     Artikel-Inhalt und Feed erlauben (Thema, Ressort, Verschlagwortung)
 
 ## Grobes Design
-coming soon
+Das Design wird hier auf Figma präsentiert:
+https://www.figma.com/file/dJqbVMwgbL1aJEfESVuMy6/Untitled?node-id=0%3A1
+
 
 ## Userstory
 + Als User:in finde ich den Player zwischen zwei Paragraphen beim Lesen eines Artikels. (p-tags)

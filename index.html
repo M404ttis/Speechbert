@@ -34,23 +34,25 @@
         }
 
         .audio-container{
+            display: flex;
             justify-content: center;
             width: 40em;
+            height: 27em;
             background-color: #2c2b2e;
             border-radius: 5px;
             /* box-shadow: 0 20px 20px 0 rgba(255, 255, 255, 1); */
-            display: flex;
             padding: 20px 30px;
-            position: relative;
-            margin: 100px;
+            /* position: relative; */
+            margin: 10px;
             z-index: 10;
         }
 
         .navigation{
             display: flex;
-            align-items: center;
+            align-items: end;
             justify-content: center;
-            z-index: 1;
+            /* z-index: 1; */
+            margin: 0 0 15px 0;
         }
 
         .action-btn{
@@ -74,24 +76,26 @@
         }
 
         .audio-info{
+            display: grid;
             background-color: #202022;
             border-radius: 5px 5px 0 0 ;
-            position: absolute;
+            /* position: absolute; */
             top: 0;
             left: 20px;
             width: calc(100% - 40px);
             opacity: .9;
-            transform: translateY(48%);
+            /* transform: translateY(48%); */
             justify-items: center;
-            display: grid;
         }
 
         .speechebert-list-item{
             cursor: pointer;
+            padding: 4px 0;
         }
 
         .speechebert-list-item:hover{
             background-color: #99999c;
+            border-radius: 4px;
         }
 
 
@@ -103,31 +107,33 @@
     <!-- Contains the whole PLayer -->
     <div class="audio-container">
         <div class="audio-info">
-            <h4 id="title">'Bitte wählen Sie einen Feed'</h4> 
+            <h4 id="title"></h4> 
             <div class="feed-list-container">
                 <ul class="feed-list Speechbert-ul"></ul>
             </div>
+            <audio src="" id="speechbertAudio" ></audio>
+            <div class="navigation">
+                <div id="prev" class="action-btn">
+                    <span class="material-icons">skip_previous</span>
+                </div>
+                <div id="play" class="action-btn action-btn-big">
+                    <span id=playPauseSpan  class="material-icons">play_arrow</span>
+                </div>
+                <div id="next" class="action-btn">
+                    <span class="material-icons">skip_next</span>
+                </div>
+            </div>
         </div>
-        <audio src="https://zon-speechbert-production.s3.eu-central-1.amazonaws.…b66458d95280af6aa3f4aab730d6db0ea4bab44bf086a41fb6c6edc2.mp3" id="speechbertAudio"></audio>
-        <div class="navigation">
-            <div id="prev" class="action-btn">
-                <span class="material-icons">skip_previous</span>
-            </div>
-            <div id="play" class="action-btn action-btn-big">
-                <span class="material-icons">play_arrow</span>
-            </div>
-            <div id="next" class="action-btn">
-                <span class="material-icons">skip_next</span>
-            </div>
-        </div>
+        <!-- <img id="feedPicture" src="" alt=""> -->
     </div>
         
     <script>
         const api_url = 'https://speech.zeit.de/api/feeds/playlist/neue-nachrichten-test'
         
         // Initiate Arrays for AudioFeed titles and urls
-        let audioFeedTitles = []
-        let audioFeedUrls = []
+        let audioFeedTitles = [];
+        let audioFeedUrls = [];
+        let pictureFeedUrls = [];
 
         async function getAudio(){
         const response = await fetch(api_url);  
@@ -140,10 +146,12 @@
             let feeds = element.items[0]
             // console.log(Object.keys(feeds))
             const {uuid, title, description, supertitle, webUrl, image, url, type} = feeds
-            // console.log(title)
+            // console.log(image)
             // console.log(url)
             audioFeedTitles.push(title);
             audioFeedUrls.push(url);
+            // image == "" || image == undefined ? pictureFeedUrls.push("") : pictureFeedUrls.push(`"${image}"`);
+            // pictureFeedUrls.push(image);
 
             // populate feedList
             function createListItemForFeed(feedTitle){
@@ -171,28 +179,37 @@
         const title = document.querySelector('#title');
         // const feedListItems = document.querySelector('.speechebert-list-item');
         const feedListItems = document.getElementsByClassName('speechebert-list-item');
+        // const feedPic = document.querySelector('#feedPicture');
+        const playPause = document.querySelector('#playPauseSpan')
+
 
         // don't loose at which audioFeed I'm at
         let audioFeedIndex = 0
     
         // load the audioFeed into DOM
-        loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
+        loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] /*, pictureFeedUrls[audioFeedIndex] */ ); 
 
         // update audio Player Details
-        function loadAudioFeed(currentTitle = "Bitte drücken Sie den >Weiter-Button<", currentUrl){
+        function loadAudioFeed(currentTitle = "Welchen Feed möchten Sie hören?", currentUrl, currentPicture){
             title.innerText = currentTitle;
             // title.innerText ? "Bitte >weiter-Button< drücken" : currentTitle
             audio.src = currentUrl;
+            // feedPic.src = currentPicture;
         }
 
         function playFeed(){
             audioContainer.classList.add('play')
+            loadAudioFeed(audioFeedTitles[audioFeedIndex], audioFeedUrls[audioFeedIndex] ); 
             audio.play();
+            // playBtn.firstChild.innerHTML = 'pause'
+            playPause.innerText = 'pause';
         }
         
         function pauseFeed(){
             audioContainer.classList.remove('play');
             audio.pause();
+            // playBtn.firstChild.innerHTML = 'play_arrow'
+            playPause.innerText = 'play_arrow';
         }
         
         function prevAudioFeed(){
